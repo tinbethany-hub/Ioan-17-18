@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Ioan 17-18</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; line-height: 1.6; }
+        h1 { text-align: center; color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 15px; }
+        h2 { color: #2980b9; background: #ecf0f1; padding: 12px 20px; border-left: 5px solid #3498db; margin-top: 40px; }
+        .q { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .q p { font-weight: 600; color: #2c3e50; margin-bottom: 15px; }
+        .ref { font-weight: normal; color: #7f8c8d; font-size: 0.9em; }
+        .opts label { display: block; padding: 10px 15px; margin: 5px 0; background: #f8f9fa; border-radius: 5px; cursor: pointer; }
+        .opts label:hover { background: #e9ecef; }
+        .opts input { margin-right: 10px; }
+        .tf-opts { display: flex; gap: 20px; }
+        .tf-opts label { flex: 1; text-align: center; }
+        .match { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .match h3 { color: #2c3e50; margin-bottom: 15px; }
+        .m-item { display: flex; align-items: center; margin-bottom: 10px; padding: 10px; background: #f8f9fa; border-radius: 5px; flex-wrap: wrap; gap: 10px; }
+        .m-item span { flex: 1; min-width: 200px; }
+        .m-item select { padding: 8px; border-radius: 5px; border: 1px solid #bdc3c7; }
+        .correct { background: #d4edda !important; border-left: 4px solid #28a745; }
+        .incorrect { background: #f8d7da !important; border-left: 4px solid #dc3545; }
+        .ans { color: #155724; font-weight: bold; margin-top: 10px; padding: 8px; background: #d4edda; border-radius: 5px; }
+        .btn { display: inline-block; margin-top: 10px; padding: 8px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .btn:hover { background: #2980b9; }
+        .btn-sm { padding: 5px 12px; font-size: 0.85em; }
+        #final { background: #2c3e50; color: white; padding: 30px; border-radius: 10px; text-align: center; margin-top: 40px; }
+        #final h2 { color: white; background: none; border: none; padding: 0; }
+        #score-btn { background: #27ae60; padding: 15px 30px; font-size: 1.2em; }
+        #score-btn:hover { background: #219a52; }
+        #results { display: none; margin-top: 20px; }
+        .score { font-size: 3em; font-weight: bold; color: #3498db; }
+        .pct { font-size: 1.5em; margin-top: 10px; }
+        .sec-score { background: rgba(255,255,255,0.1); padding: 10px; margin: 10px 0; border-radius: 5px; }
+        #reset-btn { display: none; background: #e74c3c; padding: 15px 30px; font-size: 1.2em; margin-top: 15px; }
+        #reset-btn:hover { background: #c0392b; }
+        .note { font-style: italic; color: #7f8c8d; font-size: 0.9em; margin-bottom: 15px; }
+        .icon { margin-left: 10px; font-weight: bold; }
+        .icon-ok { color: #27ae60; }
+        .icon-no { color: #e74c3c; }
+    </style>
+</head>
+<body>
+<h1>Test Ioan 17-18</h1>
+<form id="quiz">
+
+<h2>I. Adevărat sau Fals (31 întrebări)</h2>
+
+<div class="q" data-a="A"><p>1. Isus Și-a ridicat ochii spre cer și a zis: „Tată, a venit ceasul." <span class="ref">(17:1)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf1" value="A"> Adevărat</label><label><input type="radio" name="tf1" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="F"><p>2. Viața veșnică înseamnă să creadă în minuni și semne. <span class="ref">(17:3)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf2" value="A"> Adevărat</label><label><input type="radio" name="tf2" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>3. Isus spune că niciunul dintre ucenici n-a pierit, afară de fiul pierzării. <span class="ref">(17:12)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf3" value="A"> Adevărat</label><label><input type="radio" name="tf3" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>4. Isus Se sfințește pe Sine Însuși pentru ca și ucenicii să fie sfințiți prin adevăr. <span class="ref">(17:19)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf4" value="A"> Adevărat</label><label><input type="radio" name="tf4" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>5. Isus cere Tatălui să-i păzească pe ucenici în Numele Său pentru ca ei să fie una. <span class="ref">(17:11)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf5" value="A"> Adevărat</label><label><input type="radio" name="tf5" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>6. Isus spune că tot ce este al Tatălui este al Lui, și ce este al Lui este al Tatălui. <span class="ref">(17:10)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf6" value="A"> Adevărat</label><label><input type="radio" name="tf6" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>7. Isus spune că Tatăl I-a dat putere peste orice făptură ca să dea viață veșnică tuturor. <span class="ref">(17:2)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf7" value="A"> Adevărat</label><label><input type="radio" name="tf7" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>8. Isus spune: „Acum au cunoscut că tot ce Mi-ai dat Tu vine de la Tine." <span class="ref">(17:7)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf8" value="A"> Adevărat</label><label><input type="radio" name="tf8" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="F"><p>9. „Eu le-am făcut cunoscut Numele Tău şi li-L voi mai face cunoscut, pentru ca pacea cu care M-ai iubit Tu să fie în ei şi Eu să fiu în ei." <span class="ref">(17:26)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf9" value="A"> Adevărat</label><label><input type="radio" name="tf9" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="F"><p>10. Isus spune că nu a sfârşit lucrarea care Dumnezeu I-a dat-o să o facă. <span class="ref">(17:4)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf10" value="A"> Adevărat</label><label><input type="radio" name="tf10" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>11. Isus a zis despre ucenici: „Când eram cu ei în lume, Îi păzeam Eu în Numele Tău. Eu am păzit pe aceia, pe care Mi i-ai dat; și niciunul din ei n-a pierit, afară de fiul pierzării, ca să se împlinească Scriptura." <span class="ref">(17:12)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf11" value="A"> Adevărat</label><label><input type="radio" name="tf11" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>12. Isus a zis despre ucenici: „Eu însumi Mă sfințesc pentru ei, ca și ei să fie sfințiți prin adevăr." <span class="ref">(17:19)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf12" value="A"> Adevărat</label><label><input type="radio" name="tf12" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>13. Isus a zis: „Tată, vreau ca acolo unde sunt Eu, să fie împreună cu Mine și aceia pe care Mi i-ai dat Tu, ca să vadă slava Mea, slavă pe care Mi-ai dat-o Tu." <span class="ref">(17:24)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf13" value="A"> Adevărat</label><label><input type="radio" name="tf13" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>14. „Și acum Tată, proslăvește-Mă la Tine însuți cu slava, pe care o aveam la Tine, înainte de a fi lumea." <span class="ref">(17:5)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf14" value="A"> Adevărat</label><label><input type="radio" name="tf14" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="F"><p>15. Isus a zis despre ucenici: „Le-am dat Cuvântul Tău; și lumea i-a iubit, pentru că ei nu sunt din lume, după cum Eu nu sunt din lume." <span class="ref">(17:14)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf15" value="A"> Adevărat</label><label><input type="radio" name="tf15" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>16. Isus a mers spre ei și le-a zis: „Pe cine căutați?" <span class="ref">(18:4)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf16" value="A"> Adevărat</label><label><input type="radio" name="tf16" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="F"><p>17. Simon Petru a scos sabia și a tăiat urechea stângă a lui Malhu. <span class="ref">(18:10)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf17" value="A"> Adevărat</label><label><input type="radio" name="tf17" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>18. Iudeii au spus că lor nu le este îngăduit de lege să omoare pe nimeni. <span class="ref">(18:31)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf18" value="A"> Adevărat</label><label><input type="radio" name="tf18" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>19. Pilat le-a spus iudeilor că ei au obiceiul ca el să le slobozească pe cineva de Paște. <span class="ref">(18:39)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf19" value="A"> Adevărat</label><label><input type="radio" name="tf19" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>20. Isus le-a cerut să lase pe ucenicii Săi să plece. <span class="ref">(18:8)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf20" value="A"> Adevărat</label><label><input type="radio" name="tf20" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>21. Un aprod L-a lovit peste obraz pe Isus în fața marelui preot. <span class="ref">(18:22)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf21" value="A"> Adevărat</label><label><input type="radio" name="tf21" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>22. Pilat a spus iudeilor: „Luați-L voi și judecați-L după legea voastră." <span class="ref">(18:31)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf22" value="A"> Adevărat</label><label><input type="radio" name="tf22" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="F"><p>23. Portărița l-a întrebat pe Petru dacă este unul din ucenicii lui Isus, iar el a spus că da. <span class="ref">(18:17)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf23" value="A"> Adevărat</label><label><input type="radio" name="tf23" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>24. Iudeii i-au răspuns lui Pilat că nu ar fi adus pe Isus dacă nu ar fi fost un făcător de rele. <span class="ref">(18:30)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf24" value="A"> Adevărat</label><label><input type="radio" name="tf24" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="F"><p>25. Poporul a cerut ca Isus să fie eliberat în locul lui Baraba. <span class="ref">(18:40)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf25" value="A"> Adevărat</label><label><input type="radio" name="tf25" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="F"><p>26. Isus a spus că pentru aceasta S-a născut și a venit în lume: ca să mărturisească despre Iad. <span class="ref">(18:37)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf26" value="A"> Adevărat</label><label><input type="radio" name="tf26" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>27. Isus a zis celor care au venit să-L prindă: „Deci, dacă Mă căutați pe Mine, lăsați pe aceștia să se ducă." A zis lucrul acesta ca să se împlinească vorba pe care o spusese: „N-am pierdut pe niciunul din aceia, pe care Mi i-ai dat." <span class="ref">(18:8-9; 17:12)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf27" value="A"> Adevărat</label><label><input type="radio" name="tf27" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>28. Isus a fost dus mai întâi la Ana ca să fie judecat, care era socrul lui Caiafa, marele preot din anul acela. <span class="ref">(18:13)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf28" value="A"> Adevărat</label><label><input type="radio" name="tf28" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="F"><p>29. Simon Petru care avea o sabie, a scos-o, a lovit pe robul marelui preot, și i-a tăiat mâna dreaptă. <span class="ref">(18:10)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf29" value="A"> Adevărat</label><label><input type="radio" name="tf29" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>30. Petru când s-a lepădat a treia oară de Isus, îndată a cântat cocoșul. <span class="ref">(18:17, 25-27)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf30" value="A"> Adevărat</label><label><input type="radio" name="tf30" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="A"><p>31. Tatăl a dat Fiului putere peste orice făptură, ca să dea viața veșnică tuturor. <span class="ref">(17:1-2)</span></p><div class="opts tf-opts"><label><input type="radio" name="tf31" value="A"> Adevărat</label><label><input type="radio" name="tf31" value="F"> Fals</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<h2>II. Alegere multiplă - un singur răspuns corect (33 întrebări)</h2>
+
+<div class="q" data-a="a"><p>1. De ce îi urăște lumea pe ucenici? <span class="ref">(17:14)</span></p><div class="opts"><label><input type="radio" name="mc1" value="a"> a) Pentru că nu sunt din lume</label><label><input type="radio" name="mc1" value="b"> b) Pentru că sunt săraci</label><label><input type="radio" name="mc1" value="c"> c) Pentru că au renunțat la familie</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>2. Ce cere Isus Tatălui pentru ucenici? <span class="ref">(17:15)</span></p><div class="opts"><label><input type="radio" name="mc2" value="a"> a) Să-i ia din lume</label><label><input type="radio" name="mc2" value="b"> b) Să-i păzească de cel rău</label><label><input type="radio" name="mc2" value="c"> c) Să-i ducă la Templu</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="a"><p>3. Cum îi trimite Isus pe ucenici în lume? <span class="ref">(17:18)</span></p><div class="opts"><label><input type="radio" name="mc3" value="a"> a) Așa cum Tatăl L-a trimis pe El</label><label><input type="radio" name="mc3" value="b"> b) Cu puterea Duhului Sfânt</label><label><input type="radio" name="mc3" value="c"> c) Fără nici o misiune</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="a"><p>4. Ce vrea Isus să fie deplin în ucenici? <span class="ref">(17:13)</span></p><div class="opts"><label><input type="radio" name="mc4" value="a"> a) Bucuria Lui</label><label><input type="radio" name="mc4" value="b"> b) Puterea Sa</label><label><input type="radio" name="mc4" value="c"> c) Înțelepciunea Sa</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>5. Viața veșnică este…: <span class="ref">(17:3)</span></p><div class="opts"><label><input type="radio" name="mc5" value="a"> a) Să facă fapte bune</label><label><input type="radio" name="mc5" value="b"> b) Să cunoască pe singurul Dumnezeu adevărat și pe Isus Hristos</label><label><input type="radio" name="mc5" value="c"> c) Să respecte legea</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="c"><p>6. Cu ce slavă cere Isus să fie proslăvit din nou? <span class="ref">(17:5)</span></p><div class="opts"><label><input type="radio" name="mc6" value="a"> a) Slava prorocilor</label><label><input type="radio" name="mc6" value="b"> b) Slava de pe munte</label><label><input type="radio" name="mc6" value="c"> c) Slava pe care o avea înainte de a fi lumea</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>7. Ce a făcut Isus cu Numele Tatălui? <span class="ref">(17:6)</span></p><div class="opts"><label><input type="radio" name="mc7" value="a"> a) L-a ascuns</label><label><input type="radio" name="mc7" value="b"> b) L-a descoperit oamenilor pe care I i-a dat din lume</label><label><input type="radio" name="mc7" value="c"> c) L-a schimbat</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="a"><p>8. „Eu le-am dat _____ pe care Mi-ai dat-o Tu, pentru ca ei să fie una, cum şi Noi suntem una." <span class="ref">(17:22)</span></p><div class="opts"><label><input type="radio" name="mc8" value="a"> a) Slava</label><label><input type="radio" name="mc8" value="b"> b) Puterea</label><label><input type="radio" name="mc8" value="c"> c) Lumina</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="a"><p>9. Cuvântul Lui Dumnezeu este _____ <span class="ref">(17:17)</span></p><div class="opts"><label><input type="radio" name="mc9" value="a"> a) Adevărul</label><label><input type="radio" name="mc9" value="b"> b) Viaţa</label><label><input type="radio" name="mc9" value="c"> c) Lumina</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>10. „Neprihănitule Tată, lumea nu Te-a cunoscut, dar Eu Te-am cunoscut și aceștia au cunoscut că Tu _____" <span class="ref">(17:25)</span></p><div class="opts"><label><input type="radio" name="mc10" value="a"> a) M-ai chemat</label><label><input type="radio" name="mc10" value="b"> b) M-ai trimis</label><label><input type="radio" name="mc10" value="c"> c) Mă aştepţi</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>11. Unde a mers Isus cu ucenicii după ce a vorbit? <span class="ref">(18:1)</span></p><div class="opts"><label><input type="radio" name="mc11" value="a"> a) În grădina Ghetsimani</label><label><input type="radio" name="mc11" value="b"> b) Dincolo de pârâul Chedron, într-o grădină</label><label><input type="radio" name="mc11" value="c"> c) În Templu</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>12. Cine știa locul unde Isus obișnuia să se adune cu ucenicii? <span class="ref">(18:2)</span></p><div class="opts"><label><input type="radio" name="mc12" value="a"> a) Pilat</label><label><input type="radio" name="mc12" value="b"> b) Iuda</label><label><input type="radio" name="mc12" value="c"> c) Ana</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>13. Ce au făcut cei veniți să-L prindă pe Isus când Isus a spus „Eu sunt"? <span class="ref">(18:6)</span></p><div class="opts"><label><input type="radio" name="mc13" value="a"> a) Au strigat de bucurie</label><label><input type="radio" name="mc13" value="b"> b) S-au dat înapoi și au căzut la pământ</label><label><input type="radio" name="mc13" value="c"> c) Au fugit cu toții</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="c"><p>14. La cine a fost dus Isus mai întâi după arestare? <span class="ref">(18:13)</span></p><div class="opts"><label><input type="radio" name="mc14" value="a"> a) Pilat</label><label><input type="radio" name="mc14" value="b"> b) Caiafa</label><label><input type="radio" name="mc14" value="c"> c) Ana</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>15. Ce sfat dăduse Caiafa mai înainte iudeilor? <span class="ref">(18:14)</span></p><div class="opts"><label><input type="radio" name="mc15" value="a"> a) Că Isus este proroc</label><label><input type="radio" name="mc15" value="b"> b) Că este de folos să moară un singur om pentru norod</label><label><input type="radio" name="mc15" value="c"> c) Că Templul trebuie apărat cu sabia</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="c"><p>16. Datorită cui a fost lăsat Petru să intre în curtea marelui preot? <span class="ref">(18:15-16)</span></p><div class="opts"><label><input type="radio" name="mc16" value="a"> a) Datorită lui Iuda</label><label><input type="radio" name="mc16" value="b"> b) Datorită unui aprod</label><label><input type="radio" name="mc16" value="c"> c) Datorită celuilalt ucenic cunoscut de marele preot</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>17. De ce se încălzeau slujitorii și aprozii? <span class="ref">(18:18)</span></p><div class="opts"><label><input type="radio" name="mc17" value="a"> a) Pentru că ploua</label><label><input type="radio" name="mc17" value="b"> b) Pentru că era frig</label><label><input type="radio" name="mc17" value="c"> c) Pentru că era noapte târzie</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="a"><p>18. Ce a răspuns Isus când Marele Preot l-a întrebat despre învățătura Sa? <span class="ref">(18:20)</span></p><div class="opts"><label><input type="radio" name="mc18" value="a"> a) A spus că a vorbit lumii pe față</label><label><input type="radio" name="mc18" value="b"> b) A zis că a învățat doar în taină</label><label><input type="radio" name="mc18" value="c"> c) A refuzat să răspundă</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>19. Unde L-a trimis Ana pe Isus după ce a terminat de vorbit cu El? <span class="ref">(18:24)</span></p><div class="opts"><label><input type="radio" name="mc19" value="a"> a) În Templu</label><label><input type="radio" name="mc19" value="b"> b) La Caiafa</label><label><input type="radio" name="mc19" value="c"> c) La Pilat</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="a"><p>20. Cine i-a spus lui Petru: „Nu te-am văzut eu cu El în grădină?" <span class="ref">(18:26)</span></p><div class="opts"><label><input type="radio" name="mc20" value="a"> a) Unul din robii marelui preot</label><label><input type="radio" name="mc20" value="b"> b) Un soldat roman</label><label><input type="radio" name="mc20" value="c"> c) Portărița</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="a"><p>21. Ce s-a întâmplat după a treia lepădare a lui Petru? <span class="ref">(18:27)</span></p><div class="opts"><label><input type="radio" name="mc21" value="a"> a) A cântat cocoșul</label><label><input type="radio" name="mc21" value="b"> b) S-a cutremurat pământul</label><label><input type="radio" name="mc21" value="c"> c) L-au prins și pe Petru</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>22. Ce întrebare i-a pus Pilat lui Isus? <span class="ref">(18:33)</span></p><div class="opts"><label><input type="radio" name="mc22" value="a"> a) „Ești prorocul care trebuia să vină?"</label><label><input type="radio" name="mc22" value="b"> b) „Ești Tu Împăratul iudeilor?"</label><label><input type="radio" name="mc22" value="c"> c) „Ești Mesia cel așteptat?"</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>23. Ce a spus Pilat despre vinovăția lui Isus? <span class="ref">(18:38)</span></p><div class="opts"><label><input type="radio" name="mc23" value="a"> a) „Găsesc o mare vină în El."</label><label><input type="radio" name="mc23" value="b"> b) „Eu nu găsesc nici o vină în El."</label><label><input type="radio" name="mc23" value="c"> c) „Să-L judecați după legea voastră."</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="c"><p>24. Isus a zis: „Și viața veșnică este aceasta:" <span class="ref">(17:3)</span></p><div class="opts"><label><input type="radio" name="mc24" value="a"> a) să Te cunoască pe Tine, singurul Dumnezeu adevărat</label><label><input type="radio" name="mc24" value="b"> b) să cunoască pe Isus Hristos, pe care L-ai trimis Tu</label><label><input type="radio" name="mc24" value="c"> c) ambele variante</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>25. „Sfințește-i prin adevărul Tău:" <span class="ref">(17:17)</span></p><div class="opts"><label><input type="radio" name="mc25" value="a"> a) Sfințenia Ta este adevărul</label><label><input type="radio" name="mc25" value="b"> b) Cuvântul Tău este adevărul</label><label><input type="radio" name="mc25" value="c"> c) Lumina Ta este adevărul</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>26. Isus a zis Tatălui: „…Tu M-ai iubit:" <span class="ref">(17:24b)</span></p><div class="opts"><label><input type="radio" name="mc26" value="a"> a) de la întemeierea lumii</label><label><input type="radio" name="mc26" value="b"> b) înainte de întemeierea lumii</label><label><input type="radio" name="mc26" value="c"> c) de când am venit jos pe pământ</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="a"><p>27. Unde avea Isus obicei să se adune cu ucenicii Săi? <span class="ref">(18:1-2)</span></p><div class="opts"><label><input type="radio" name="mc27" value="a"> a) dincolo de pârâul Chedron, unde era o grădină</label><label><input type="radio" name="mc27" value="b"> b) dincolo de pârâul Iordan, unde era o grădină</label><label><input type="radio" name="mc27" value="c"> c) în Ierusalim, la scăldătoarea Betesda</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>28. Cum se numea robul marelui preot? <span class="ref">(18:10)</span></p><div class="opts"><label><input type="radio" name="mc28" value="a"> a) Baraba</label><label><input type="radio" name="mc28" value="b"> b) Malhu</label><label><input type="radio" name="mc28" value="c"> c) Chedron</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="b"><p>29. Cine dăduse Iudeilor sfatul acesta: „Este de folos să moară un singur om pentru norod."? <span class="ref">(18:14)</span></p><div class="opts"><label><input type="radio" name="mc29" value="a"> a) Ana</label><label><input type="radio" name="mc29" value="b"> b) Caiafa</label><label><input type="radio" name="mc29" value="c"> c) Baraba</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="c"><p>30. De ce nu au intrat Iudeii în odaia de judecată? <span class="ref">(18:28)</span></p><div class="opts"><label><input type="radio" name="mc30" value="a"> a) le era frică de Pilat</label><label><input type="radio" name="mc30" value="b"> b) pentru că era o zi de sabat</label><label><input type="radio" name="mc30" value="c"> c) ca să nu se spurce și să poată mânca Paștele</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="a"><p>31. Fiindcă Iudeii aveau un obicei de Paște, să slobozească pe cineva, au strigat să fie eliberat: <span class="ref">(18:39-40)</span></p><div class="opts"><label><input type="radio" name="mc31" value="a"> a) „Baraba!"</label><label><input type="radio" name="mc31" value="b"> b) „Împăratul Iudeilor!"</label><label><input type="radio" name="mc31" value="c"> c) „Hristosul!"</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="c"><p>32. Ceata ostașilor și aprozii care au venit să prindă pe Isus, au fost trimiși de: <span class="ref">(18:3)</span></p><div class="opts"><label><input type="radio" name="mc32" value="a"> a) Preoții cei mai de seamă</label><label><input type="radio" name="mc32" value="b"> b) Farisei</label><label><input type="radio" name="mc32" value="c"> c) Ambele variante</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<div class="q" data-a="a"><p>33. Când au adus pe Isus de la Caiafa la Pilat, în odaia de judecată, era: <span class="ref">(18:28)</span></p><div class="opts"><label><input type="radio" name="mc33" value="a"> a) dimineață</label><label><input type="radio" name="mc33" value="b"> b) seară</label><label><input type="radio" name="mc33" value="c"> c) noapte</label></div><button type="button" class="btn" onclick="check(this)">Verifică</button></div>
+
+<h2>III. Asocieri (3 seturi)</h2>
+
+<div class="match"><h3>Set 1: Ioan 17</h3><p class="note">Asociați elementele din coloana stângă cu cele din coloana dreaptă.</p>
+<div class="m-item" data-a="D"><span>1. Cuvântul Tău</span><select name="m1_1"><option value="">-- Alegeți --</option><option value="A">A. i-a urât (17:14)</option><option value="B">B. de cel rău (17:15)</option><option value="C">C. înainte de întemeierea lumii (17:24)</option><option value="D">D. adevărul (17:17)</option><option value="E">E. Cuvântul Său (17:14)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="B"><span>2. Să-i păzești</span><select name="m1_2"><option value="">-- Alegeți --</option><option value="A">A. i-a urât (17:14)</option><option value="B">B. de cel rău (17:15)</option><option value="C">C. înainte de întemeierea lumii (17:24)</option><option value="D">D. adevărul (17:17)</option><option value="E">E. Cuvântul Său (17:14)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="A"><span>3. Lumea</span><select name="m1_3"><option value="">-- Alegeți --</option><option value="A">A. i-a urât (17:14)</option><option value="B">B. de cel rău (17:15)</option><option value="C">C. înainte de întemeierea lumii (17:24)</option><option value="D">D. adevărul (17:17)</option><option value="E">E. Cuvântul Său (17:14)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="E"><span>4. Isus a dat</span><select name="m1_4"><option value="">-- Alegeți --</option><option value="A">A. i-a urât (17:14)</option><option value="B">B. de cel rău (17:15)</option><option value="C">C. înainte de întemeierea lumii (17:24)</option><option value="D">D. adevărul (17:17)</option><option value="E">E. Cuvântul Său (17:14)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="C"><span>5. Tu m-ai iubit</span><select name="m1_5"><option value="">-- Alegeți --</option><option value="A">A. i-a urât (17:14)</option><option value="B">B. de cel rău (17:15)</option><option value="C">C. înainte de întemeierea lumii (17:24)</option><option value="D">D. adevărul (17:17)</option><option value="E">E. Cuvântul Său (17:14)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+</div>
+
+<div class="match"><h3>Set 2: Ioan 18 - Persoane și asocieri</h3>
+<div class="m-item" data-a="C"><span>1. Iuda</span><select name="m2_1"><option value="">-- Alegeți --</option><option value="A">A. Malhu (18:10)</option><option value="B">B. Pârâul (18:1)</option><option value="C">C. Vânzătorul (18:5)</option><option value="D">D. Socrul lui Caiafa (18:13)</option><option value="E">E. Tâlhar (18:40)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="A"><span>2. Robul marelui preot</span><select name="m2_2"><option value="">-- Alegeți --</option><option value="A">A. Malhu (18:10)</option><option value="B">B. Pârâul (18:1)</option><option value="C">C. Vânzătorul (18:5)</option><option value="D">D. Socrul lui Caiafa (18:13)</option><option value="E">E. Tâlhar (18:40)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="D"><span>3. Ana</span><select name="m2_3"><option value="">-- Alegeți --</option><option value="A">A. Malhu (18:10)</option><option value="B">B. Pârâul (18:1)</option><option value="C">C. Vânzătorul (18:5)</option><option value="D">D. Socrul lui Caiafa (18:13)</option><option value="E">E. Tâlhar (18:40)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="E"><span>4. Baraba</span><select name="m2_4"><option value="">-- Alegeți --</option><option value="A">A. Malhu (18:10)</option><option value="B">B. Pârâul (18:1)</option><option value="C">C. Vânzătorul (18:5)</option><option value="D">D. Socrul lui Caiafa (18:13)</option><option value="E">E. Tâlhar (18:40)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="B"><span>5. Chedron</span><select name="m2_5"><option value="">-- Alegeți --</option><option value="A">A. Malhu (18:10)</option><option value="B">B. Pârâul (18:1)</option><option value="C">C. Vânzătorul (18:5)</option><option value="D">D. Socrul lui Caiafa (18:13)</option><option value="E">E. Tâlhar (18:40)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+</div>
+
+<div class="match"><h3>Set 3: Ioan 18 - Cine a spus?</h3>
+<div class="m-item" data-a="B"><span>1. Unul din robii marelui preot</span><select name="m3_1"><option value="">-- Alegeți --</option><option value="A">A. „Așa răspunzi marelui preot?" (18:22)</option><option value="B">B. „Nu te-am văzut eu cu El în grădină?" (18:26)</option><option value="C">C. „Ce pâră aduceți împotriva omului acesta?" (18:29)</option><option value="D">D. „Nu cumva ești și tu unul din ucenicii Lui?" (18:25)</option><option value="E">E. „Nu cumva și tu ești unul din ucenicii omului acestuia?" (18:17)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="A"><span>2. Unul din aprozi</span><select name="m3_2"><option value="">-- Alegeți --</option><option value="A">A. „Așa răspunzi marelui preot?" (18:22)</option><option value="B">B. „Nu te-am văzut eu cu El în grădină?" (18:26)</option><option value="C">C. „Ce pâră aduceți împotriva omului acesta?" (18:29)</option><option value="D">D. „Nu cumva ești și tu unul din ucenicii Lui?" (18:25)</option><option value="E">E. „Nu cumva și tu ești unul din ucenicii omului acestuia?" (18:17)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="D"><span>3. Robii și aprozii</span><select name="m3_3"><option value="">-- Alegeți --</option><option value="A">A. „Așa răspunzi marelui preot?" (18:22)</option><option value="B">B. „Nu te-am văzut eu cu El în grădină?" (18:26)</option><option value="C">C. „Ce pâră aduceți împotriva omului acesta?" (18:29)</option><option value="D">D. „Nu cumva ești și tu unul din ucenicii Lui?" (18:25)</option><option value="E">E. „Nu cumva și tu ești unul din ucenicii omului acestuia?" (18:17)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="C"><span>4. Pilat</span><select name="m3_4"><option value="">-- Alegeți --</option><option value="A">A. „Așa răspunzi marelui preot?" (18:22)</option><option value="B">B. „Nu te-am văzut eu cu El în grădină?" (18:26)</option><option value="C">C. „Ce pâră aduceți împotriva omului acesta?" (18:29)</option><option value="D">D. „Nu cumva ești și tu unul din ucenicii Lui?" (18:25)</option><option value="E">E. „Nu cumva și tu ești unul din ucenicii omului acestuia?" (18:17)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+<div class="m-item" data-a="E"><span>5. Portărița</span><select name="m3_5"><option value="">-- Alegeți --</option><option value="A">A. „Așa răspunzi marelui preot?" (18:22)</option><option value="B">B. „Nu te-am văzut eu cu El în grădină?" (18:26)</option><option value="C">C. „Ce pâră aduceți împotriva omului acesta?" (18:29)</option><option value="D">D. „Nu cumva ești și tu unul din ucenicii Lui?" (18:25)</option><option value="E">E. „Nu cumva și tu ești unul din ucenicii omului acestuia?" (18:17)</option></select><button type="button" class="btn btn-sm" onclick="checkM(this)">Verifică</button></div>
+</div>
+
+<h2>IV. Alegere multiplă - răspunsuri multiple (11 întrebări)</h2>
+<p class="note">Selectați toate răspunsurile corecte. Poate fi unul, două, trei sau nici un răspuns corect.</p>
+
+<div class="q" data-a="a,c" data-t="multi"><p>1. Ce spune Isus că a făcut pe pământ? <span class="ref">(17:4)</span></p><div class="opts"><label><input type="checkbox" name="mu1" value="a"> a) A proslăvit pe Tatăl</label><label><input type="checkbox" name="mu1" value="b"> b) A adunat oaste pentru răzvrătire</label><label><input type="checkbox" name="mu1" value="c"> c) A sfârșit lucrarea care i-a fost dată</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div class="q" data-a="a,b" data-t="multi"><p>2. Pentru cine se roagă Isus? <span class="ref">(17:9, 20)</span></p><div class="opts"><label><input type="checkbox" name="mu2" value="a"> a) Pentru cei pe care Tatăl I-a dat Lui</label><label><input type="checkbox" name="mu2" value="b"> b) Pentru cei ce vor crede în El prin cuvântul lor (ucenicilor)</label><label><input type="checkbox" name="mu2" value="c"> c) Pentru lume în general</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div class="q" data-a="a,b" data-t="multi"><p>3. Ce dorește Isus pentru cei pe care Tatăl I-a dat Lui? <span class="ref">(17:21, 24)</span></p><div class="opts"><label><input type="checkbox" name="mu3" value="a"> a) Să fie una, cum Tatăl și Fiul sunt una</label><label><input type="checkbox" name="mu3" value="b"> b) Să fie cu El unde este El, ca să vadă slava Lui</label><label><input type="checkbox" name="mu3" value="c"> c) Să primească poziții de frunte în Israel</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div class="q" data-a="a,c" data-t="multi"><p>4. Cine a venit cu Iuda să-L prindă pe Isus? <span class="ref">(18:3)</span></p><div class="opts"><label><input type="checkbox" name="mu4" value="a"> a) O ceată de ostași</label><label><input type="checkbox" name="mu4" value="b"> b) Ucenicii lui Petru</label><label><input type="checkbox" name="mu4" value="c"> c) Aprozii preoților cei mai de seamă și ai fariseilor</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div class="q" data-a="a" data-t="multi"><p>5. Ce i-a cerut Isus lui Petru după ce acesta a scos sabia? <span class="ref">(18:11)</span></p><div class="opts"><label><input type="checkbox" name="mu5" value="a"> a) Să pună sabia în teacă</label><label><input type="checkbox" name="mu5" value="b"> b) Să fugă în munți</label><label><input type="checkbox" name="mu5" value="c"> c) Să nu-L părăsească</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div class="q" data-a="b,c" data-t="multi"><p>6. De ce nu au intrat iudeii în odaia de judecată? <span class="ref">(18:28)</span></p><div class="opts"><label><input type="checkbox" name="mu6" value="a"> a) Pentru că era interzis să intre noaptea</label><label><input type="checkbox" name="mu6" value="b"> b) Ca să poată mânca Paștele</label><label><input type="checkbox" name="mu6" value="c"> c) Ca să nu se spurce</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div class="q" data-a="a,c" data-t="multi"><p>7. În rugăciunea Sa către Tatăl, Isus s-a rugat pentru: <span class="ref">(17:9, 20)</span></p><div class="opts"><label><input type="checkbox" name="mu7" value="a"> a) Ucenicii Săi</label><label><input type="checkbox" name="mu7" value="b"> b) Lume</label><label><input type="checkbox" name="mu7" value="c"> c) Cei ce vor crede în Isus, prin cuvântul ucenicilor</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div class="q" data-a="a,b" data-t="multi"><p>8. Isus a ridicat ochii spre cer, și a zis: <span class="ref">(17:1)</span></p><div class="opts"><label><input type="checkbox" name="mu8" value="a"> a) „Tată, a sosit ceasul!"</label><label><input type="checkbox" name="mu8" value="b"> b) „Proslăvește pe Fiul Tău, ca și Fiul Tău să Te proslăvească pe Tine."</label><label><input type="checkbox" name="mu8" value="c"> c) „Nu vreau să beau paharul, pe care Mi L-ai dat Tată să-l beau!"</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div class="q" data-a="a,b,c" data-t="multi"><p>9. Pilat a zis lui Isus: <span class="ref">(18:33-35, 38)</span></p><div class="opts"><label><input type="checkbox" name="mu9" value="a"> a) „Ești Tu Împăratul Iudeilor?"</label><label><input type="checkbox" name="mu9" value="b"> b) „Ce este adevărul?"</label><label><input type="checkbox" name="mu9" value="c"> c) „Neamul Tău și preoții cei mai de seamă Te-au dat în mâna mea: ce ai făcut?"</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div class="q" data-a="a,b,c" data-t="multi"><p>10. Cine au prins pe Isus, și L-au legat? <span class="ref">(18:12)</span></p><div class="opts"><label><input type="checkbox" name="mu10" value="a"> a) Aprozii Iudeilor</label><label><input type="checkbox" name="mu10" value="b"> b) Ceata ostașilor</label><label><input type="checkbox" name="mu10" value="c"> c) Căpitanul ostașilor</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div class="q" data-a="b,c" data-t="multi"><p>11. Isus s-a rugat Tatălui pentru ucenici astfel: <span class="ref">(17:15)</span></p><div class="opts"><label><input type="checkbox" name="mu11" value="a"> a) „Te rog să-i iei din lume"</label><label><input type="checkbox" name="mu11" value="b"> b) „Nu te rog să-i iei din lume"</label><label><input type="checkbox" name="mu11" value="c"> c) „Să-i păzești de cel rău"</label></div><button type="button" class="btn" onclick="checkMulti(this)">Verifică</button></div>
+
+<div id="final">
+<h2>Scor Final</h2>
+<p>Apasă butonul pentru a vedea scorul tău final.</p>
+<button type="button" class="btn" id="score-btn" onclick="calcScore()">Calculează Scorul Final</button>
+<div id="results">
+<div class="score" id="total"></div>
+<div class="pct" id="pct"></div>
+<div class="sec-score" id="s1"></div>
+<div class="sec-score" id="s2"></div>
+<div class="sec-score" id="s3"></div>
+<div class="sec-score" id="s4"></div>
+</div>
+<button type="button" class="btn" id="reset-btn" onclick="resetQuiz()">Resetează Testul</button>
+</div>
+
+</form>
+
+<script>
+function check(btn) {
+    var q = btn.closest('.q');
+    var correct = q.dataset.a;
+    var name = q.querySelector('input[type="radio"]').name;
+    var sel = document.querySelector('input[name="'+name+'"]:checked');
+    if (!sel) { alert('Selectați un răspuns.'); return; }
+    q.classList.remove('correct','incorrect');
+    var old = q.querySelector('.ans'); if(old) old.remove();
+    var icon = q.querySelector('.icon'); if(icon) icon.remove();
+    
+    if (sel.value === correct) {
+        q.classList.add('correct');
+        btn.insertAdjacentHTML('afterend','<span class="icon icon-ok">✓</span>');
+    } else {
+        q.classList.add('incorrect');
+        btn.insertAdjacentHTML('afterend','<span class="icon icon-no">✗</span>');
+        var txt = correct === 'A' || correct === 'F' ? (correct === 'A' ? 'Adevărat' : 'Fals') : q.querySelector('input[value="'+correct+'"]').parentElement.textContent.trim();
+        q.insertAdjacentHTML('beforeend','<div class="ans">Răspuns corect: '+txt+'</div>');
+    }
+}
+
+function checkM(btn) {
+    var item = btn.closest('.m-item');
+    var correct = item.dataset.a;
+    var sel = item.querySelector('select');
+    if (!sel.value) { alert('Selectați un răspuns.'); return; }
+    item.classList.remove('correct','incorrect');
+    var old = item.querySelector('.ans'); if(old) old.remove();
+    var icon = item.querySelector('.icon'); if(icon) icon.remove();
+    
+    if (sel.value === correct) {
+        item.classList.add('correct');
+        btn.insertAdjacentHTML('afterend','<span class="icon icon-ok">✓</span>');
+    } else {
+        item.classList.add('incorrect');
+        btn.insertAdjacentHTML('afterend','<span class="icon icon-no">✗</span>');
+        var txt = sel.querySelector('option[value="'+correct+'"]').textContent;
+        item.insertAdjacentHTML('beforeend','<div class="ans">Răspuns corect: '+txt+'</div>');
+    }
+}
+
+function checkMulti(btn) {
+    var q = btn.closest('.q');
+    var correct = q.dataset.a.split(',');
+    var name = q.querySelector('input[type="checkbox"]').name;
+    var boxes = document.querySelectorAll('input[name="'+name+'"]');
+    var selected = [];
+    boxes.forEach(function(b){ if(b.checked) selected.push(b.value); });
+    if (selected.length === 0) { alert('Selectați cel puțin un răspuns.'); return; }
+    
+    q.classList.remove('correct','incorrect');
+    var old = q.querySelector('.ans'); if(old) old.remove();
+    var icon = q.querySelector('.icon'); if(icon) icon.remove();
+    
+    var isCorrect = correct.length === selected.length && correct.every(function(a){ return selected.includes(a); });
+    
+    if (isCorrect) {
+        q.classList.add('correct');
+        btn.insertAdjacentHTML('afterend','<span class="icon icon-ok">✓</span>');
+    } else {
+        q.classList.add('incorrect');
+        btn.insertAdjacentHTML('afterend','<span class="icon icon-no">✗</span>');
+        var labels = correct.map(function(a){ return q.querySelector('input[value="'+a+'"]').parentElement.textContent.trim(); });
+        q.insertAdjacentHTML('beforeend','<div class="ans">Răspunsuri corecte: '+labels.join(', ')+'</div>');
+    }
+}
+
+function calcScore() {
+    var tfC=0, mcC=0, matchC=0, multiC=0;
+    
+    // TF + MC (single)
+    document.querySelectorAll('.q:not([data-t="multi"])').forEach(function(q){
+        var correct = q.dataset.a;
+        var inp = q.querySelector('input[type="radio"]');
+        if(!inp) return;
+        var name = inp.name;
+        var sel = document.querySelector('input[name="'+name+'"]:checked');
+        if(sel && sel.value === correct) {
+            if(name.startsWith('tf')) tfC++; else mcC++;
+        }
+        q.classList.remove('correct','incorrect');
+        if(sel && sel.value === correct) q.classList.add('correct');
+        else q.classList.add('incorrect');
+    });
+    
+    // Matching
+    document.querySelectorAll('.m-item').forEach(function(item){
+        var correct = item.dataset.a;
+        var sel = item.querySelector('select');
+        if(sel.value === correct) matchC++;
+        item.classList.remove('correct','incorrect');
+        if(sel.value === correct) item.classList.add('correct');
+        else item.classList.add('incorrect');
+    });
+    
+    // Multi
+    document.querySelectorAll('.q[data-t="multi"]').forEach(function(q){
+        var correct = q.dataset.a.split(',');
+        var name = q.querySelector('input[type="checkbox"]').name;
+        var boxes = document.querySelectorAll('input[name="'+name+'"]');
+        var selected = [];
+        boxes.forEach(function(b){ if(b.checked) selected.push(b.value); });
+        var isCorrect = correct.length === selected.length && correct.every(function(a){ return selected.includes(a); });
+        if(isCorrect) multiC++;
+        q.classList.remove('correct','incorrect');
+        if(isCorrect) q.classList.add('correct');
+        else q.classList.add('incorrect');
+    });
+    
+    var total = tfC + mcC + matchC + multiC;
+    var max = 31 + 33 + 15 + 11;
+    var pct = Math.round((total/max)*100);
+    
+    document.getElementById('total').textContent = total + ' / ' + max;
+    document.getElementById('pct').textContent = pct + '%';
+    document.getElementById('s1').textContent = 'Adevărat/Fals: ' + tfC + ' / 31';
+    document.getElementById('s2').textContent = 'Alegere multiplă (un răspuns): ' + mcC + ' / 33';
+    document.getElementById('s3').textContent = 'Asocieri: ' + matchC + ' / 15';
+    document.getElementById('s4').textContent = 'Alegere multiplă (răspunsuri multiple): ' + multiC + ' / 11';
+    
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('reset-btn').style.display = 'inline-block';
+    document.getElementById('score-btn').style.display = 'none';
+}
+
+function resetQuiz() {
+    document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(function(i){ i.checked = false; });
+    document.querySelectorAll('select').forEach(function(s){ s.value = ''; });
+    document.querySelectorAll('.q, .m-item').forEach(function(el){ el.classList.remove('correct','incorrect'); });
+    document.querySelectorAll('.ans, .icon').forEach(function(el){ el.remove(); });
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('reset-btn').style.display = 'none';
+    document.getElementById('score-btn').style.display = 'inline-block';
+    window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>
